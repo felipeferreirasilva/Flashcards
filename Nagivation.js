@@ -1,16 +1,18 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from './components/Home'
 import Deck from './components/Deck'
+import AddCard from './components/AddCard'
 
 const Stack = createStackNavigator({
     Home: Home,
-    Deck: Deck
+    Deck: Deck,
+    AddCard: AddCard
   }, {
-      // headerTransitionPreset: 'uikit',
-      // mode: 'modal',
+      headerTransitionPreset: 'fade-in-place',
+      mode: 'left'
     }
   );
   
   const Navigation = createAppContainer(Stack)
-  
+
   export default Navigation
