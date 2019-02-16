@@ -52,6 +52,8 @@ class Deck extends Component {
     }
 
     onPressStartQuiz = () => {
+        let gamePlayed = this.props.navigation.getParam('gamePlayed')
+        gamePlayed()
         this.setState({
             startQuiz: true
         })
@@ -105,8 +107,11 @@ class Deck extends Component {
                                             <Button title="Add Card" style={style.button} onPress={this.onPressAddCard}></Button>
                                         </View>
                                     ) : (
-                                        <Text h4 style={{ textAlign: 'center', margin: 10 }}>Please, add cards to this deck.</Text>
-                                    )
+                                            <View>
+                                                <Text h4 style={{ textAlign: 'center', margin: 10 }}>Please, add cards to this deck.</Text>
+                                                <Button title="Add Card" style={style.button} onPress={this.onPressAddCard}></Button>
+                                            </View>
+                                        )
                                 )
                         ) : (
                                 <AddCard style={style.card} deck={this.state.deck} updateDecks={this.props.navigation.getParam('updateDecks')}></AddCard>
