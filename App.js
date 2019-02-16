@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from './Nagivation'
+import Navigation from './Navigation'
 import { setLocalNotification} from "./utils/notification"
 
 
