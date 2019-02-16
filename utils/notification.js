@@ -51,9 +51,3 @@ export const setLocalNotification = async () => {
   }
 }
 
-export const getIsLocalNotificationSet = async () => {
-  const data = await AsyncStorage.getItem(NOTIFICATION_KEY)
-  const isNotificationSet = JSON.parse(data)
-
-  return isNotificationSet
-}
