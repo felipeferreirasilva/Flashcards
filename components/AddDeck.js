@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, AsyncStorage } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
-import { createNewDeck } from '../utils/api'
+import { createNewDeck, DECKS_KEY } from '../utils/api'
 
 class AddDeck extends Component{
 
     state = {
         deckTitle: '',
-        deckAdded: false
+        deckAdded: false,
+        deck: {}
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -25,7 +26,19 @@ class AddDeck extends Component{
     onSaveDeck = () => {
         let title = this.state.deckTitle
         let updateDecks = this.props.navigation.getParam('updateDecks')
+        
         createNewDeck(this.state.deckTitle, updateDecks)
+        .then(response => {
+            let decks = JSON.parse(response)
+            let newDeck = { deck_name: title, cards: [] }
+            decks.push(newDeck)
+            AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks))
+                .then(response => {
+                    updateDecks()
+                    this.props.navigation.navigate('Deck', { deck: newDeck, updateDecks: updateDecks, gamePlayed: this.props.navigation.getParam('gamePlayed') })
+                })
+        })
+        
         this.setState({
             deckAdded: true
         })

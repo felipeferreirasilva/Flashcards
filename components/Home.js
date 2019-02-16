@@ -94,7 +94,7 @@ class Home extends Component {
                         </ListItem>
                     ))
                 }
-                <Button title="Add New Deck" style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('AddDeck', { updateDecks: this.updateDecks })}></Button>
+                <Button title="Add New Deck" style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('AddDeck', { updateDecks: this.updateDecks, gamePlayed: this.gamePlayedUpdate })}></Button>
             </ScrollView>
         )
     }

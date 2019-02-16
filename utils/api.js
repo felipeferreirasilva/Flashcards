@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import { initialCards } from './initialData'
 
-const DECKS_KEY = 'decks'
+export const DECKS_KEY = 'decks'
 
 export const checkInitialData = () => {
     return AsyncStorage.getItem(DECKS_KEY)
@@ -12,16 +12,8 @@ export const createInitialDeck = () => {
 }
 
 export const createNewDeck = (title, updateDecks) => {
-    getAllDecks()
-        .then(response => {
-            let decks = JSON.parse(response)
-            let newDeck = { deck_name: title, cards: [] }
-            decks.push(newDeck)
-            AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks))
-                .then(() => {
-                    updateDecks()
-                })
-        })
+    return getAllDecks()
+        
 }
 
 export const updateDeck = (deckName, newCard, updateDecks) => {

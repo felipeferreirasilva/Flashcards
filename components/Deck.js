@@ -73,6 +73,28 @@ class Deck extends Component {
         }
     }
 
+    onRestartQuiz = () => {
+        this.setState({
+            startQuiz: true,
+            showAnswer: false,
+            showAddCard: false,
+            questionNumber: 0,
+            gameFinished: false,
+            score: 0
+        })
+    }
+
+    onBackToDeck = () => {
+        this.setState({
+            startQuiz: false,
+            showAnswer: false,
+            showAddCard: false,
+            questionNumber: 0,
+            gameFinished: false,
+            score: 0
+        })
+    }
+
     render() {
         return (
             <View>
@@ -121,6 +143,9 @@ class Deck extends Component {
                                 <Text h2 style={{ textAlign: 'center', margin: 10 }}>Quiz Finished</Text>
                                 <Text h4 style={{ textAlign: 'center' }}>Score: {this.state.score} of {this.state.deck.cards.length}</Text>
                                 <Text h4 style={{ textAlign: 'center', margin: 10 }}>{(this.state.score * 100) / this.state.deck.cards.length} %</Text>
+
+                                <Button title="Restart Quiz" style={style.button} onPress={this.onRestartQuiz}></Button>
+                                <Button title="Back to Deck" style={style.button} onPress={this.onBackToDeck}></Button>
                             </View>
                         )
                 }
