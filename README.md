@@ -7,7 +7,7 @@ Flashcards utilizes React Native.
 ### Author
 The app was created by Felipe (felipeferreirasilva@gmail.com), feel free to send an email with any question.
 
-This project was bootstrapped with [Create React Native App](https://github.com/facebook/create-react-native-app).
+This project was bootstrapped with Create React Native App.
 
 # Using the app
 
