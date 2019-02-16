@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
-import { ListItem, Text } from 'react-native-elements'
+import { View, ScrollView } from 'react-native'
+import { ListItem, Text, Button } from 'react-native-elements'
 import { checkInitialData, createInitialDeck, getAllDecks, deleteAllData, updateDeck } from '../utils/api'
 
 // LISTAR TODOS OS DECKS
@@ -49,7 +49,7 @@ class Home extends Component {
 
     render() {
         return (
-            <View>
+            <ScrollView>
                 <Text h3 style={{ margin: 15, textAlign: "center" }}>Select a Deck</Text>
                 {Object.keys(this.state.decks).length > 0 &&
                     this.state.decks.map(deck => (
@@ -75,7 +75,8 @@ class Home extends Component {
                         </ListItem>
                     ))
                 }
-            </View>
+                <Button title="Add New Deck" style={{marginTop: 10}} onPress={() => this.props.navigation.navigate('AddDeck', {updateDecks: this.updateDecks })}></Button>
+            </ScrollView>
         )
     }
 }

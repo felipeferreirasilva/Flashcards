@@ -11,21 +11,33 @@ export const createInitialDeck = () => {
     return AsyncStorage.setItem(DECKS_KEY, JSON.stringify(initialCards))
 }
 
+export const createNewDeck = (title, updateDecks) => {
+    getAllDecks()
+        .then(response => {
+            let decks = JSON.parse(response)
+            let newDeck = { deck_name: title, cards: [] }
+            decks.push(newDeck)
+            AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks))
+                .then(() => {
+                    updateDecks()
+                })
+        })
+}
+
 export const updateDeck = (deckName, newCard, updateDecks) => {
     getAllDecks()
         .then(response => {
             let decks = JSON.parse(response)
             for (let i = 0; i < decks.length; i++) {
-                
+
                 if (decks[i].deck_name === deckName) {
                     decks[i].cards.push(newCard)
-                    return AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks))
-                    .then(response => {
-                        updateDecks()
-                    })
+                    AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks))
+                        .then(() => {
+                            updateDecks()
+                        })
                 }
             }
-            console.log(false)
         })
 }
 

@@ -98,20 +98,24 @@ class Deck extends Component {
                                         </Card>
                                     )
                             ) : (
-                                    <View>
-                                        <Text style={{ margin: 10, textAlign: "center" }}>Questions: {this.state.deck.cards.length} </Text>
-                                        <Button title="Start Quiz" onPress={this.onPressStartQuiz} style={style.button}></Button>
-                                        <Button title="Add Card" style={style.button} onPress={this.onPressAddCard}></Button>
-                                    </View>
+                                    this.state.deck.cards.length > 0 ? (
+                                        <View>
+                                            <Text style={{ margin: 10, textAlign: "center" }}>Questions: {this.state.deck.cards.length} </Text>
+                                            <Button title="Start Quiz" onPress={this.onPressStartQuiz} style={style.button}></Button>
+                                            <Button title="Add Card" style={style.button} onPress={this.onPressAddCard}></Button>
+                                        </View>
+                                    ) : (
+                                        <Text h4 style={{ textAlign: 'center', margin: 10 }}>Please, add cards to this deck.</Text>
+                                    )
                                 )
                         ) : (
                                 <AddCard style={style.card} deck={this.state.deck} updateDecks={this.props.navigation.getParam('updateDecks')}></AddCard>
                             )
                     ) : (
                             <View>
-                                <Text h2 style={{textAlign: 'center', margin: 10}}>Quiz Finished</Text>
-                                <Text h4 style={{textAlign: 'center'}}>Score: {this.state.score} of {this.state.deck.cards.length}</Text>
-                                <Text h4 style={{textAlign: 'center', margin: 10}}>{(this.state.score * 100) / this.state.deck.cards.length } %</Text>
+                                <Text h2 style={{ textAlign: 'center', margin: 10 }}>Quiz Finished</Text>
+                                <Text h4 style={{ textAlign: 'center' }}>Score: {this.state.score} of {this.state.deck.cards.length}</Text>
+                                <Text h4 style={{ textAlign: 'center', margin: 10 }}>{(this.state.score * 100) / this.state.deck.cards.length} %</Text>
                             </View>
                         )
                 }
